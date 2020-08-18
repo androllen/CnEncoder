@@ -28,7 +28,7 @@ namespace Cn.Module.Encode.ViewModels
             if (obj.ModuleInfo.ModuleType != typeof(EncodeModule).AssemblyQualifiedName)
             {
                 Message = string.Empty;
-                var msg = ""
+                var msg = "";
                 // obj.value=obj.value.replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"\\u$2")});
                 Message += msg;
             }
