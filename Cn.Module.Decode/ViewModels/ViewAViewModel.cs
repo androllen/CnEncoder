@@ -31,6 +31,7 @@ namespace Cn.Module.Decode.ViewModels
         {
             if (obj.ModuleInfo.ModuleType != typeof(DecodeModule).AssemblyQualifiedName)
             {
+                if (string.IsNullOrEmpty(obj._msg)) return;
                 Message = string.Empty;
                 var msg = Regex.Unescape(obj._msg);
                 //msg = Helper.Unicode2String(obj._msg);

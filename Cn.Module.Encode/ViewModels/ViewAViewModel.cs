@@ -29,6 +29,8 @@ namespace Cn.Module.Encode.ViewModels
         {
             if (obj.ModuleInfo.ModuleType != typeof(EncodeModule).AssemblyQualifiedName)
             {
+                if (string.IsNullOrEmpty(obj._msg)) return;
+
                 Message = string.Empty;
                 // Define a test string.
                 var msg = obj._msg;
@@ -41,11 +43,11 @@ namespace Cn.Module.Encode.ViewModels
                 {
                     GroupCollection groups = match.Groups;
                     var bytes = Encoding.Unicode.GetBytes(groups[0].Value);
-                    var temp = $"\\u{string.Format("{0:X}", bytes[1])}{string.Format("{0:X}", bytes[0])}";
+                    var temp = $"\\u{string.Format("{0:X2}", bytes[1])}{string.Format("{0:X2}", bytes[0])}".ToLower();
                     msg = rx.Replace(msg, temp, 1);
                 }
 
-                Message += msg.ToLower();
+                Message += msg;
             }
         }
 

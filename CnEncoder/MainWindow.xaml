@@ -3,10 +3,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:CnEncoder"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
-    Title="MainWindow"
+    Title="中文转码工具 by androllen"
     Width="800"
     Height="450"
     prism:ViewModelLocator.AutoWireViewModel="True"
@@ -25,17 +24,20 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Button
+                Height="36"
                 VerticalAlignment="Bottom"
                 Command="{Binding CmdEncode}"
-                Content="encode"
-                FontSize="20" />
+                Content="编码"
+                FontSize="20"
+                ToolTip="右侧填入中文数据开始编写机器码" />
             <Button
                 Grid.Row="2"
                 Height="36"
                 VerticalAlignment="Top"
                 Command="{Binding CmdDecode}"
-                Content="decode"
-                FontSize="20" />
+                Content="解码"
+                FontSize="20"
+                ToolTip="左侧填入机器数据开始解密机器码" />
         </Grid>
         <ContentControl Grid.Column="2" prism:RegionManager.RegionName="DecodeContentRegion" />
     </Grid>
