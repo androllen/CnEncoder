@@ -2,6 +2,8 @@
 using Prism.Events;
 using Prism.Modularity;
 using Prism.Mvvm;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Cn.Module.Encode.ViewModels
 {
@@ -28,9 +30,22 @@ namespace Cn.Module.Encode.ViewModels
             if (obj.ModuleInfo.ModuleType != typeof(EncodeModule).AssemblyQualifiedName)
             {
                 Message = string.Empty;
-                var msg = "";
-                // obj.value=obj.value.replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"\\u$2")});
-                Message += msg;
+                // Define a test string.
+                var msg = obj._msg;
+                //string text = "The the quick 人 fox 狐狸 jumps over the lazy 狗狗.";
+                Regex rx = new Regex(@"[^\u0000-\u00FF]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+                // Find matches.
+                MatchCollection matches = rx.Matches(msg);
+                foreach (Match match in matches)
+                {
+                    GroupCollection groups = match.Groups;
+                    var bytes = Encoding.Unicode.GetBytes(groups[0].Value);
+                    var temp = $"\\u{string.Format("{0:X}", bytes[1])}{string.Format("{0:X}", bytes[0])}";
+                    msg = rx.Replace(msg, temp, 1);
+                }
+
+                Message += msg.ToLower();
             }
         }
 

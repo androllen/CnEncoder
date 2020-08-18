@@ -2,7 +2,7 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-
+//http://mytju.com/classcode/tools/encode_gb2312.asp
 namespace Cn.Module.Encode
 {
     public class EncodeModule : IModule
