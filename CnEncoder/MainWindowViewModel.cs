@@ -11,6 +11,13 @@ namespace CnEncoder
 {
     public class MainWindowViewModel : BindableBase
     {
+        private string _title = "中文转码工具 by androllen";
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
         private readonly IEventAggregator _eventAggregator;
         private readonly IModuleCatalog _moduleCatalog;
         public MainWindowViewModel(IEventAggregator eventAggregator, IModuleCatalog moduleCatalog)
