@@ -43,7 +43,7 @@ namespace Cn.Module.Encode.ViewModels
                 {
                     GroupCollection groups = match.Groups;
                     var bytes = Encoding.Unicode.GetBytes(groups[0].Value);
-                    var temp = $"\\u{string.Format("{0:X2}", bytes[1])}{string.Format("{0:X2}", bytes[0])}".ToLower();
+                    var temp = $"\\u{string.Format("{0:x2}", bytes[1])}{string.Format("{0:x2}", bytes[0])}";
                     msg = rx.Replace(msg, temp, 1);
                 }
 
